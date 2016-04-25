@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
-
+<link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
   {% include head.html %}
 
   <body>
-
+    
     {% include header.html %}
+    {% include navbar.html %}
 
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+    <div id="main_content_wrap" class="outer">
+        <section id="main_content" class="inner">
+            
+            {{ content }}
+            
+        </section>
     </div>
 
     {% include footer.html %}
