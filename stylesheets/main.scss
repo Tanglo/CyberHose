@@ -1,0 +1,122 @@
+---
+sitemap:
+  exclude: "yes"
+---
+
+/*
+ * Variables
+ */
+$header-background-colour: #212121;
+$header-grad-colour: #373737;
+
+
+.outer {
+    width: 100%;
+}
+
+.inner {
+    position: relative;
+    max-width: 640px;
+    padding: 20px 10px;
+    margin: 0 auto;
+}
+
+body {
+    box-sizing: border-box;
+    color:$header-grad-colour;
+    background: header-background-colour;
+    font-size: 16px;
+    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 10px 0;
+    font-weight: 700;
+    color:#222222;
+    font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+    letter-spacing: -1px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+h2 {
+    padding-bottom: 10px;
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 21px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: $header-background-colour;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+#header_wrap {
+    background: $header-background-colour;
+    background: -moz-linear-gradient(top, $header-grad-colour, $header-background-colour);
+    background: -webkit-linear-gradient(top, $header-grad-colour, $header-background-colour);
+    background: -ms-linear-gradient(top, $header-grad-colour, $header-background-colour);
+    background: -o-linear-gradient(top, $header-grad-colour, $header-background-colour);
+    background: linear-gradient(top, $header-grad-colour, $header-background-colour);
+}
+
+#navbar-wrap {
+    background: $header-background-colour;
+}
+
+#navbar-wrap .inner {
+    padding: 0;
+}
+
+#main_content_wrap {
+    background: #f2f2f2;
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #111;
+}
+
+#main_content {
+    padding-top: 40px;
+}
+
+#footer_wrap {
+    background: $header-background-colour;
+}

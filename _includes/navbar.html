@@ -1,13 +1,15 @@
 <div id="navbar-wrap" class="outer">
     <div class="inner">
         {% assign pages = site.pages | sort:"order"  %}
-        <ul id="navbar">
+        <ul>
             {% for p in pages %}
-            <li>
-                <a id="navbar" {% if p.url == page.url %}class="active"{% endif %} href="{{ p.url | prepend: site.baseurl}}">
-                    {{ p.title }}
-                </a>
-            </li>
+                {% unless p.sitemap.exclude == "yes" %}
+                    <li>
+                        <a {% if p.url == page.url %}class="active"{% endif %} href="{{ p.url | prepend: site.baseurl}}">
+                            {{ p.title }}
+                        </a>
+                    </li>
+                {% endunless %}
             {% endfor %}
         </ul>
     </div>
