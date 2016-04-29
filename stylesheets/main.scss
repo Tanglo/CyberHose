@@ -6,8 +6,11 @@ sitemap:
 /*
  * Variables
  */
-$header-background-colour: #212121;
-$header-grad-colour: #373737;
+$header-background-colour: #216A27;
+$header-grad-colour: #286ED2;
+$header-top-colour: #FFF756;
+$text-color: #212121;
+$navbar-active-color: #104029;
 
 
 .outer {
@@ -22,8 +25,8 @@ $header-grad-colour: #373737;
 }
 
 body {
-    box-sizing: border-box;
-    color:$header-grad-colour;
+//    box-sizing: border-box;
+    color:$text-color;
     background: header-background-colour;
     font-size: 16px;
     font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
@@ -65,6 +68,12 @@ h6 {
     font-size: 16px;
 }
 
+a {
+    text-decoration: none;
+    color: #286ED2;
+    text-shadow: none;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -85,18 +94,34 @@ li a {
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
+/* Change the link color to $navbar-active-color on hover */
 li a:hover {
-    background-color: #111;
+    background-color: $navbar-active-color;
 }
 
 #header_wrap {
     background: $header-background-colour;
-    background: -moz-linear-gradient(top, $header-grad-colour, $header-background-colour);
-    background: -webkit-linear-gradient(top, $header-grad-colour, $header-background-colour);
-    background: -ms-linear-gradient(top, $header-grad-colour, $header-background-colour);
-    background: -o-linear-gradient(top, $header-grad-colour, $header-background-colour);
-    background: linear-gradient(top, $header-grad-colour, $header-background-colour);
+    background: -moz-linear-gradient(top, $header-top-colour, $header-grad-colour 15%, $header-grad-colour 80%, $header-background-colour);
+    background: -webkit-linear-gradient(top, $header-top-colour, $header-grad-colour 15%, $header-grad-colour 80%, $header-background-colour);
+    background: -ms-linear-gradient(top, $header-top-colour, $header-grad-colour 15%, $header-grad-colour 80%, $header-background-colour);
+    background: -o-linear-gradient(top, $header-top-colour, $header-grad-colour 15%, $header-grad-colour 80%, $header-background-colour);
+    background: linear-gradient(top, $header-top-colour, $header-grad-colour 15%, $header-grad-colour 80%, $header-background-colour);
+}
+
+#project_title {
+    margin: 0;
+    color: #fff;
+    font-size: 42px;
+    font-weight: 700;
+    text-shadow: #111 0px 0px 10px;
+}
+
+#project_tagline {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 300;
+    background: none;
+    text-shadow: #111 0px 0px 10px;
 }
 
 #navbar-wrap {
@@ -109,8 +134,8 @@ li a:hover {
 
 #main_content_wrap {
     background: #f2f2f2;
-    border-top: 1px solid #111;
-    border-bottom: 1px solid #111;
+//    border-top: 1px solid #111;
+//    border-bottom: 1px solid #111;
 }
 
 #main_content {
@@ -119,4 +144,9 @@ li a:hover {
 
 #footer_wrap {
     background: $header-background-colour;
+}
+
+footer a {
+    color: $text-color;
+    text-decoration: underline;
 }
