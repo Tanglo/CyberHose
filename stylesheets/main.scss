@@ -68,30 +68,14 @@ h6 {
     font-size: 16px;
 }
 
+p + ul {
+    margin-top: -20px;
+}
+
 a {
     text-decoration: none;
     color: #286ED2;
     text-shadow: none;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: $header-background-colour;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
 }
 
 /* Change the link color to $navbar-active-color on hover */
@@ -131,6 +115,27 @@ li a:hover {
 #navbar-wrap .inner {
     padding: 0;
 }
+
+#navbar-wrap ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: $header-background-colour;
+}
+
+#navbar-wrap li {
+    float: left;
+}
+
+#navbar-wrap li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
 
 #main_content_wrap {
     background: #f2f2f2;
