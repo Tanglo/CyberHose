@@ -17,16 +17,19 @@ Alternatively download a [tarball](https://github.com/Tanglo/CyberHose/tarball/m
 CyberHose is written in objective-c and uses the GnuStep framework.  You will need clang, gnustep and the gnustep develmopment tools to compile CyberHose.  Assuming you are running Raspbian on your Pi you can get these pacakges from the shell with the following commands.
 
 __Clang__
-```
+
+ ```
 sudo apt-get install clang
 ```
 
 __GNUStep__
-```
+
+ ```
 sudo apt-get install gnustep
 ```
 
 __GNUStep development tools__
-```
+
+ ```
 sudo apt-get install gnustep-devel
 ```
