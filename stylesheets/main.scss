@@ -10,7 +10,8 @@ $header-background-colour: #216A27;
 $header-grad-colour: #286ED2;
 $header-top-colour: #FFF756;
 $text-color: #212121;
-$navbar-active-color: #104029;
+$navbar-active-colour: #104029;
+$code-block-colour: #E0E0E0;
 
 
 .outer {
@@ -72,15 +73,29 @@ p + ul {
     margin-top: -20px;
 }
 
+p,
+    li {
+        code {
+//        @include font-rem(12);
+        line-height: 1.5;
+        white-space: nowrap;
+        margin: 0 2px;
+        padding: 5px 10px;
+//        border: $code-block-colour;
+        background-color: $code-block-colour;
+//        @include rounded(3px);
+    }
+}
+
 a {
     text-decoration: none;
     color: #286ED2;
     text-shadow: none;
 }
 
-/* Change the link color to $navbar-active-color on hover */
+/* Change the link color to $navbar-active-colour on hover */
 li a:hover {
-    background-color: $navbar-active-color;
+    background-color: $navbar-active-colour;
 }
 
 #header_wrap {
