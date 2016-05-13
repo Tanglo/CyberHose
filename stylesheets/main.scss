@@ -76,14 +76,11 @@ p + ul {
 p,
     li {
         code {
-//        @include font-rem(12);
         line-height: 1.5;
         white-space: nowrap;
         margin: 0 2px;
         padding: 5px 10px;
-//        border: $code-block-colour;
         background-color: $code-block-colour;
-//        @include rounded(3px);
     }
 }
 

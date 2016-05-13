@@ -4,8 +4,9 @@ title: Download
 order: 1
 ---
 When CyberHose first becomes availble it will be as source only.  To get the source you can clone the CyberHose repository using git.  To clone in to the current directory run the following from your shell:
-```
-git clone git@github.com:user/my-project.git
+
+ ```
+git clone https://github.com/Tanglo/CyberHose.git
 ```
 
 Alternatively download a [tarball](https://github.com/Tanglo/CyberHose/tarball/master "CyberHose tarball") or [zip file](https://github.com/Tanglo/CyberHose/zipball/master "CyberHose zip file") of the latest source.

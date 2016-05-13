@@ -21,3 +21,5 @@ github_username: Tanglo
 markdown: kramdown
 kramdown:
   input: GFM
+
+highlighter: rouge
