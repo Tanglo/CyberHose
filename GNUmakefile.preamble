@@ -1,0 +1,12 @@
+#
+# CyberHose GNUMakefile
+#
+# Created by: Lee Walsh on 17/07/2016.
+# Copyright (c) 2016 Lee David Walsh. All rights reserved.
+# This software is licensed under The MIT License (MIT)
+# See: https://github.com/Tanglo/CyberHose/blob/master/LICENSE.md
+#
+
+cyberHose_TOOL_LIBS		+= -lbcm2835
+cyberHose_INCLUDE_DIRS	+= -I/usr/local/include/
+cyberHose_LIB_DIRS		+= -L/usr/local/lib/

@@ -1,6 +1,11 @@
 #
 # CyberHose GNUMakefile
 #
+# Created by: Lee Walsh on 17/07/2016.
+# Copyright (c) 2016 Lee David Walsh. All rights reserved.
+# This software is licensed under The MIT License (MIT)
+# See: https://github.com/Tanglo/CyberHose/blob/master/LICENSE.md
+#
 
 GNUSTEP_MAKEFILES = /usr/share/GNUstep/Makefiles
 
@@ -9,9 +14,9 @@ include $(GNUSTEP_MAKEFILES)/common.make
 
 TOOL_NAME = cyberHose
 
-cyberHose_OBJC_FILES = helloPi.m
+cyberHose_OBJC_FILES = CHMain.m CHGPIO.m
 
-# -include GNUmakefile.preamble
+-include GNUmakefile.preamble
 
 #Include the rules for making obj-c
 include $(GNUSTEP_MAKEFILES)/tool.make
