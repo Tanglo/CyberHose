@@ -9,10 +9,15 @@
 
 #import "CHMain.h"
 #import "CHGPIO.h"
+#import "CHSettings.h"
 
 int main(int argc, const char * argv[])
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSLog(@"Starting CyberHose");
+	CHSettings *settings = [[CHSettings alloc] init];
+	
+/*
 	NSLog(@"Making a CHGPIO");
 	CHGPIO *testPin = [CHGPIO gpioWithGPIO: 17 AndMode: GPIO_OUTPUT];
 	NSLog([NSString stringWithFormat: @"testPin is controlling pin number %d", testPin.gpioNumber]);
@@ -29,6 +34,7 @@ int main(int argc, const char * argv[])
 		testPin.setLow;
 		bcm2835_delay(100);
 	}
+*/
 	
 	[pool release];
 	return 0;
