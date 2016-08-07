@@ -15,7 +15,8 @@ int main(int argc, const char * argv[])
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSLog(@"Starting CyberHose");
-	CHSettings *settings = [[CHSettings alloc] init];
+	CHSettings *settings = [CHSettings settings];
+//	NSLog([settings schedulePath]);
 	
 /*
 	NSLog(@"Making a CHGPIO");

@@ -20,4 +20,14 @@
 	NSString *schedulePath;
 }
 
+/*! Creates a new autoreleasing instance of @c CHSettings.
+ * @return If sucessful, the newly created instance of @c CHSettings, otherwise @c nil.
+ */
++(CHSettings *)settings;
+
+/*! Returns the path to the CyberHose schedule file..
+ * @return An @c NSString that shows the path to the schedule file.
+ */
+-(NSString *)schedulePath;
+
 @end
