@@ -10,6 +10,7 @@
 #import "CHMain.h"
 #import "CHGPIO.h"
 #import "CHSettings.h"
+#import "CHSchedule.h"
 
 int main(int argc, const char * argv[])
 {
@@ -17,6 +18,8 @@ int main(int argc, const char * argv[])
 	NSLog(@"Starting CyberHose");
 	CHSettings *settings = [CHSettings settings];
 //	NSLog([settings schedulePath]);
+
+	CHSchedule *schedule = [CHSchedule scheduleWithPath: [settings schedulePath]];
 	
 /*
 	NSLog(@"Making a CHGPIO");

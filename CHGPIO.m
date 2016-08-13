@@ -12,10 +12,7 @@
 @implementation CHGPIO
 
 -(id)init{
-	self = [super init];
-	if (self) {
-		NSLog(@"Error: use initWithType: instead of init");
-	}
+	NSLog(@"Error: use initWithType: instead of init");
 	return nil;
 }
 
