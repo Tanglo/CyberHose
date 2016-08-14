@@ -1,1 +1,6 @@
- - CHGPIOController - track which pins are currently being used
+Now:
+ - finish initialisation of CHSchedule
+
+Future:
+ ? CHGPIOController - track which pins are currently being used
+ ? make the non-initialiser class methods of CHSchedule private.
