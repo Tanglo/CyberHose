@@ -20,6 +20,7 @@ int main(int argc, const char * argv[])
 //	NSLog([settings schedulePath]);
 
 	CHSchedule *schedule = [CHSchedule scheduleWithPath: [settings schedulePath]];
+	[schedule printSchedule];
 	
 /*
 	NSLog(@"Making a CHGPIO");

@@ -8,10 +8,11 @@
  */
 
 #import "CHSchedule.h"
+#import "CHScheduleLine.h"
 
 @interface CHSchedule ()
 
--(void)decodeLineStrings: (NSArray *)lines;
+-(NSArray *)decodeLineStrings: (NSArray *)lines;
 
 @end
 
@@ -34,7 +35,7 @@
 				scheduleString = [scheduleString stringByReplacingOccurrencesOfString: @" " withString: @""];
 				NSArray *lineStrings = [scheduleString componentsSeparatedByString: @"\n"];
 				lineStrings = [CHSchedule scheduleLinesByRemovingCommentsAndBlankLinesFrom: lineStrings];
-				[self decodeLineStrings: lineStrings];
+				scheduleLines = [self decodeLineStrings: lineStrings];
 			}
 		return self;
 		}
@@ -42,11 +43,19 @@
 	return nil;
 }
 
--(void)decodeLineStrings:(NSArray *)lines{
+-(NSArray *)decodeLineStrings:(NSArray *)lines{
 	NSArray *scheduleHeaders;
 	scheduleHeaders = [[lines objectAtIndex: 0] componentsSeparatedByString: @"|"];
 	scheduleHeaders = [CHSchedule stringsByRemovingComments: scheduleHeaders];
-	
+	NSInteger numLines = [lines count];
+	NSMutableArray *newScheduleLines = [NSMutableArray array];
+	NSInteger i;
+	for(i=1; i<numLines; i++){
+		NSArray *lineStrings = [[lines objectAtIndex: i] componentsSeparatedByString: @"|"];
+		lineStrings = [CHSchedule stringsByRemovingComments: lineStrings];
+		[newScheduleLines addObject: [CHScheduleLine scheduleLineWithStrings: lineStrings AndHeaders: scheduleHeaders]];
+	}
+	return scheduleLines;
 }
 
 +(CHSchedule *)scheduleWithPath: (NSString *) path{
@@ -79,6 +88,12 @@
 		return YES;
 	}
 	return NO;
+}
+
+-(void)printSchedule{
+	for(CHScheduleLine *line in scheduleLines){
+		[line printScheduleLine];
+	}
 }
 
 @end
