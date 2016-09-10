@@ -9,6 +9,14 @@
 
 #import <Foundation/Foundation.h>
 
+#define CHSunday @"CHStringSunday"
+#define CHMonday @"CHStringMonday"
+#define CHTuesday @"CHStringTuesday"
+#define CHWednesday @"CHStringWednesday"
+#define CHThursday @"CHStringThursday"
+#define CHFriday @"CHStringFriday"
+#define CHSaturday @"CHStringSaturday" 
+
 /*!
  @brief A class to manage a single line of a CyberHose schedule.
  
@@ -17,16 +25,16 @@
 @interface CHScheduleLine : NSObject {
 	
 	/// @brief The frequency of irrigation in hours.  Ignored if days in non-zero.
-	NSInteger freq;
+	NSInteger _frequency;
 	
 	/// @brief The duration of irrigation in minutes
-	NSInteger duration;
+	NSInteger _duration;
 	
-	/// @brief The coded days sum of the days to water.  Sun=1, Mon=2, Tue=4, Wed=8, Thu=16, Fri=32, Sat=64
-	NSInteger days;
+	/// @brief An array of @c NSString objects coding days to water on.  Possible objects are @c CHSunday, @c CHMonday, @c CHTuesday, @c CHWednesday, @c CHThursday, @c CHFriday, or @c CHSaturday.
+	NSArray *_days;
 	
 	/// @brief An array of @c BOOL wrapped in @c NSNumber objects.  These indicate which water sources can be used for this line.
-	NSArray *waterSources;
+	NSArray *_waterSources;
 		
 }
 

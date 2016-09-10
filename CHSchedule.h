@@ -37,7 +37,7 @@
 @interface CHSchedule : NSObject {
 	
 	/// @brief An array of the @c CHScheduleLine objects
-	NSArray *scheduleLines;
+	NSArray *_scheduleLines;
 }
 
 /*! Initialises a @c CHSchedule object using the path provided.

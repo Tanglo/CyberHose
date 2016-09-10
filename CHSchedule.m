@@ -35,7 +35,7 @@
 				scheduleString = [scheduleString stringByReplacingOccurrencesOfString: @" " withString: @""];
 				NSArray *lineStrings = [scheduleString componentsSeparatedByString: @"\n"];
 				lineStrings = [CHSchedule scheduleLinesByRemovingCommentsAndBlankLinesFrom: lineStrings];
-				scheduleLines = [self decodeLineStrings: lineStrings];
+				_scheduleLines = [self decodeLineStrings: lineStrings];
 			}
 		return self;
 		}
@@ -55,7 +55,7 @@
 		lineStrings = [CHSchedule stringsByRemovingComments: lineStrings];
 		[newScheduleLines addObject: [CHScheduleLine scheduleLineWithStrings: lineStrings AndHeaders: scheduleHeaders]];
 	}
-	return scheduleLines;
+	return [NSArray arrayWithArray: newScheduleLines];
 }
 
 +(CHSchedule *)scheduleWithPath: (NSString *) path{
@@ -91,7 +91,8 @@
 }
 
 -(void)printSchedule{
-	for(CHScheduleLine *line in scheduleLines){
+	NSLog(@"Printing schedule");
+	for(CHScheduleLine *line in _scheduleLines){
 		[line printScheduleLine];
 	}
 }
