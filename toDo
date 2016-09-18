@@ -1,5 +1,6 @@
 Now:
  - finish initialisation of CHScheduleLine
+	- time
 
 Future:
  ? CHGPIOController - track which pins are currently being used
