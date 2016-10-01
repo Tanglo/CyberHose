@@ -8,6 +8,7 @@
  */
 
 #import "CHScheduleLine.h"
+#import "CHTime.h"
 
 @implementation CHScheduleLine
 
@@ -19,6 +20,7 @@
 -(CHScheduleLine *)initWithStrings: (NSArray *)strings AndHeaders: (NSArray *)headers{
 	self = [super init];
 	if (self) {
+		//days and frequency
 		NSInteger index = [headers indexOfObject: @"days"];
 		NSScanner *lineScanner = [NSScanner scannerWithString: [strings objectAtIndex: index]];
 		NSInteger days;
@@ -69,6 +71,7 @@
 			}
 		}
 		
+		//duration
 		index = [headers indexOfObject: @"dur"];
 		lineScanner = [NSScanner scannerWithString: [strings objectAtIndex: index]];
 		if([lineScanner scanInteger: &_duration]){
@@ -82,6 +85,23 @@
 			_duration = -1;
 		}
 		
+		//times
+		index = [headers indexOfObject: @"time"];
+		NSArray *timeStrings = [[strings objectAtIndex: index] componentsSeparatedByString: @","];
+		NSMutableArray *newTimes = [NSMutableArray array];
+		for(NSString *currTimeString in timeStrings){
+			lineScanner = [NSScanner scannerWithString: currTimeString];
+			NSInteger newTimeInt = 0;
+			if([lineScanner scanInteger: &newTimeInt]){
+				CHTime *newTime = [CHTime timeWithInteger: newTimeInt];
+				if(newTime != nil){
+					[newTimes addObject: newTime];
+				}	
+			}
+		}
+		_times = newTimes;
+		
+		//sources
 		
 		
 		return self;
@@ -94,7 +114,7 @@
 }
 
 -(void)printScheduleLine{
-	NSLog([NSString stringWithFormat: @"freq: %d; dur: %d; days: %@", _frequency, _duration, _days]);
+	NSLog([NSString stringWithFormat: @"freq: %d; dur: %d; days: %@; times: %@", _frequency, _duration, _days, _times]);
 }
 
 @end

@@ -33,6 +33,9 @@
 	/// @brief An array of @c NSString objects coding days to water on.  Possible objects are @c CHSunday, @c CHMonday, @c CHTuesday, @c CHWednesday, @c CHThursday, @c CHFriday, or @c CHSaturday.
 	NSArray *_days;
 	
+	/// @brief An array of @c CHTime objects that represent the starting times from the cyberhoseSchedule.
+	NSArray *_times;
+	
 	/// @brief An array of @c BOOL wrapped in @c NSNumber objects.  These indicate which water sources can be used for this line.
 	NSArray *_waterSources;
 		
