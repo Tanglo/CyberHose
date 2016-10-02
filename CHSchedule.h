@@ -19,7 +19,7 @@
  * line      | freq | dur | days | time      | s0(tank) | s1(mains) | s2(grey)
  * 0(fruit)  | 2w   | 1h  | -    | 1900      | 1        | 1         | 1
  * 1(bonsai) | 1d   | 10m | -    | 1830      | 1        | 1         | 0
- * 2(veges)  | -    | 30m | 84   | 1900 0700 |1        | 1         | 1
+ * 2(veges)  | -    | 30m | 84   | 1900 0700 | 1        | 1         | 1
  * 
  * The 'line' and 'dur' columns must be present.  At least one of the 'freq' or 'days' must be present. There must be at least one 'sX' column, but there can be as many as needed.  Text contained by brackets and white space are ignored.  Thus brackets can be used to make comments. The '|' characters are the separators for the variables.  A single '-' represents no entry.
  * 
@@ -54,7 +54,7 @@
  */
 +(CHSchedule *)scheduleWithPath: (NSString *) path;
 
-/*! Removes the commented lines and blanks lines (i.e. "") from an array of schedule lines
+/*! Removes the commented lines (i.e. starting wtih "//") and blanks lines (i.e. "") from an array of schedule lines
  * @param lines An array of cyberhose schedule line strings.
  * @return and NSArray of cyberhose schedule strings with the blank and commented lines removed.
  */
@@ -64,7 +64,13 @@
  * @param strings An @c NSArray of strings
  * @return The same array of strings with text contained in brackets removed from each string.
  */
-+(NSArray *)stringsByRemovingComments: (NSArray *)strings;
+//+(NSArray *)stringsByRemovingComments: (NSArray *)strings;
+
+/*! Removes the comments (i.e. tect contained in brackets) from an array of strings and returns the strings and the comments.
+ * @param strings An @c NSArray of strings
+ * @return An @c NSDictionary containing and two arrays keyed by "dataStrings" and "comments"
+ */
++(NSDictionary*)dataAndCommentsFrom: (NSArray*)strings;
 
 /*! Tests if a schedule line is a comment (i.e. starts with //).
  * @param line The schedule line string to test.

@@ -8,6 +8,6 @@
 #
 
 
-cyberHose_TOOL_LIBS		+= -lbcm2835
-cyberHose_INCLUDE_DIRS	+= -I/usr/local/include/
-cyberHose_LIB_DIRS		+= -L/usr/local/lib/
+cyberhosed_TOOL_LIBS		+= -lbcm2835
+cyberhosed_INCLUDE_DIRS	+= -I/usr/local/include/
+cyberhosed_LIB_DIRS		+= -L/usr/local/lib/

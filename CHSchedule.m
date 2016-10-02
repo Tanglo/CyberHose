@@ -46,13 +46,15 @@
 -(NSArray *)decodeLineStrings:(NSArray *)lines{
 	NSArray *scheduleHeaders;
 	scheduleHeaders = [[lines objectAtIndex: 0] componentsSeparatedByString: @"|"];
-	scheduleHeaders = [CHSchedule stringsByRemovingComments: scheduleHeaders];
+//	scheduleHeaders = [CHSchedule stringsByRemovingComments: scheduleHeaders];
+	scheduleHeaders = [[CHSchedule dataAndCommentsFrom: scheduleHeaders] objectForKey: @"dataStrings"];
 	NSInteger numLines = [lines count];
 	NSMutableArray *newScheduleLines = [NSMutableArray array];
 	NSInteger i;
 	for(i=1; i<numLines; i++){
 		NSArray *lineStrings = [[lines objectAtIndex: i] componentsSeparatedByString: @"|"];
-		lineStrings = [CHSchedule stringsByRemovingComments: lineStrings];
+//		lineStrings = [CHSchedule stringsByRemovingComments: lineStrings];
+		lineStrings = [[CHSchedule dataAndCommentsFrom: lineStrings] objectForKey: @"dataStrings"];
 		[newScheduleLines addObject: [CHScheduleLine scheduleLineWithStrings: lineStrings AndHeaders: scheduleHeaders]];
 	}
 	return [NSArray arrayWithArray: newScheduleLines];
@@ -72,6 +74,7 @@
 	return [NSArray arrayWithArray: newLines];
 }
 
+/*
 +(NSArray *)stringsByRemovingComments: (NSArray *)strings{
 	NSMutableArray *newStrings = [NSMutableArray array];
 	for(NSString *currString in strings){
@@ -81,6 +84,26 @@
 		[newStrings addObject: newString];
 	}
 	return [NSArray arrayWithArray: newStrings];
+}
+*/
+
++(NSDictionary*)dataAndCommentsFrom: (NSArray*)strings{
+	NSMutableArray *newStrings = [NSMutableArray array];
+	NSMutableArray *newComments = [NSMutableArray array];
+	for(NSString *currString in strings){
+		NSString *newString;
+		NSString *newComment;
+		NSScanner *scanner = [NSScanner scannerWithString: currString];
+		if([scanner scanUpToString: @"(" intoString: &newString]){
+			if([scanner scanUpToString: @")" intoString: &newComment]){
+				[newComments addObject: newComment];
+			} else {
+				[newComments addObject: @""];
+			}
+		}
+		[newStrings addObject: newString];
+	}
+	return [NSDictionary dictionaryWithObjectsAndKeys: [NSArray arrayWithArray: newStrings], @"dataStrings", [NSArray arrayWithArray: newComments], @"comments", nil];
 }
 
 +(BOOL)lineIsAComment: (NSString *)line{

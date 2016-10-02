@@ -102,7 +102,29 @@
 		_times = newTimes;
 		
 		//sources
-		
+		NSMutableArray* newWaterSources = [NSMutableArray array];
+		BOOL sourceWasFound;
+		NSString* currSource = nil;
+		NSInteger sourceCount = 0;
+		do{
+			sourceWasFound = NO;
+			currSource = [NSString stringWithFormat: @"s%d", sourceCount];
+			if((index = [headers indexOfObject: currSource]) != NSNotFound){
+				lineScanner = [NSScanner scannerWithString: [strings objectAtIndex: index]];
+				NSInteger newSourceValue;
+				NSNumber *newSourceNumberValue = [NSNumber numberWithBool: NO];
+				if([lineScanner scanInteger: &newSourceValue]){
+					if(newSourceValue){
+						newSourceNumberValue = [NSNumber numberWithBool: YES];
+					}
+				}
+				sourceWasFound = YES;
+				sourceCount++;
+				[newWaterSources addObject: newSourceNumberValue];
+//				NSLog([NSString stringWithFormat: @"%@ - %d, %d", currSource, index, newSourceValue]);
+			}
+		}while(sourceWasFound);
+		_waterSources = [NSArray arrayWithArray: newWaterSources];
 		
 		return self;
 	}
@@ -114,7 +136,11 @@
 }
 
 -(void)printScheduleLine{
-	NSLog([NSString stringWithFormat: @"freq: %d; dur: %d; days: %@; times: %@", _frequency, _duration, _days, _times]);
+	NSString *waterSourcesString = @"";
+	for(NSNumber *currSource in _waterSources){
+		waterSourcesString = [waterSourcesString stringByAppendingString: [NSString stringWithFormat: @"%s ", [currSource boolValue] ? "YES" : "NO"]];
+	}
+	NSLog([NSString stringWithFormat: @"freq: %d; dur: %d; days: %@; times: %@, sources: %@", _frequency, _duration, _days, _times, waterSourcesString]);
 }
 
 @end

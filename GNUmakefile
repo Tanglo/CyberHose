@@ -12,9 +12,9 @@ GNUSTEP_MAKEFILES = /usr/share/GNUstep/Makefiles
 #Include the common Makefile variables
 include $(GNUSTEP_MAKEFILES)/common.make
 
-TOOL_NAME = cyberHose
+TOOL_NAME = cyberhosed
 
-cyberHose_OBJC_FILES = CHMain.m CHGPIO.m CHSettings.m CHSchedule.m CHScheduleLine.m CHTime.m
+cyberhosed_OBJC_FILES = CHMain.m CHGPIO.m CHSettings.m CHSchedule.m CHScheduleLine.m CHTime.m
 
 -include GNUmakefile.preamble
 
