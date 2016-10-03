@@ -1,3 +1,4 @@
 obj/
 *.geany
 .DS_Store
+doxygen*.db

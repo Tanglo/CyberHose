@@ -1,0 +1,17 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="NSObject",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="CHGPIO",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceCHGPIO.html",tooltip="A wrapper class for the pigpio library for controlling raspberry pi GPIO pins. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="CHSchedule",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceCHSchedule.html",tooltip="A class to load and store the CyberHose schedule. "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="CHScheduleLine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceCHScheduleLine.html",tooltip="A class to manage a single line of a CyberHose schedule. "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="CHSettings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceCHSettings.html",tooltip="A class to load and store the CyberHose settings. "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="CHTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaceCHTime.html",tooltip="A class to represent 4 digit times. "];
+}
