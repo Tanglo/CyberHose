@@ -14,7 +14,7 @@ include $(GNUSTEP_MAKEFILES)/common.make
 
 TOOL_NAME = cyberhosed
 
-cyberhosed_OBJC_FILES = CHMain.m CHGPIO.m CHSettings.m CHSchedule.m CHScheduleLine.m CHTime.m
+cyberhosed_OBJC_FILES = CHMain.m CHGPIO.m CHSettings.m CHSchedule.m CHScheduleLine.m CHTime.m CHStartDaemon.m
 
 -include GNUmakefile.preamble
 

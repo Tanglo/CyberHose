@@ -11,13 +11,13 @@ The CyberHose system will consist of solenoid valves and sensors controlled by s
 
 ###Development Plan###
 
-**Stage 1**
-* **Basic structure**
-* **Valve control**
+Stage 1 - **complete**
+* ~~Basic structure~~
+* ~~Valve control~~
 
-Stage 2
-* Scheduling
-* Level monitoring
+**Stage 2 - current**
+* **Scheduling**
+* **Level monitoring**
 
 Stage 3
 * Web page reporting
@@ -31,3 +31,4 @@ Stage 5
 
 ###Installation###
 Source only at this stage.  Grab the lastest release and compile it on your Pi.
+

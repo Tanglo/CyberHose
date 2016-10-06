@@ -11,16 +11,20 @@
 #import "CHGPIO.h"
 #import "CHSettings.h"
 #import "CHSchedule.h"
+#import "CHStartDaemon.m"
 
 int main(int argc, const char * argv[])
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSLog(@"Starting CyberHose");
 	CHSettings *settings = [CHSettings settings];
-//	NSLog([settings schedulePath]);
 
 	CHSchedule *schedule = [CHSchedule scheduleWithPath: [settings schedulePath]];
-	[schedule printSchedule];
+	startCyberhoseDaemon();
+//	[schedule printSchedule];
+	while(1){
+	
+	}
 	
 /*
 	NSLog(@"Making a CHGPIO");
