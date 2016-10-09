@@ -23,6 +23,11 @@
 	return nil;
 }
 
+-(NSUInteger)countByEnumeratingWithState: (NSFastEnumerationState*)state objects: (id*)stackbuf count:(NSUInteger)len{
+	return [_scheduleLines countByEnumeratingWithState: state objects: stackbuf count: len];
+}
+
+
 -(id)initWithPath: (NSString *)path{
 	self = [super init];
 	if (self) {
@@ -74,19 +79,6 @@
 	return [NSArray arrayWithArray: newLines];
 }
 
-/*
-+(NSArray *)stringsByRemovingComments: (NSArray *)strings{
-	NSMutableArray *newStrings = [NSMutableArray array];
-	for(NSString *currString in strings){
-		NSString *newString;
-		NSScanner *scanner = [NSScanner scannerWithString: currString];
-		[scanner scanUpToString: @"(" intoString: &newString];
-		[newStrings addObject: newString];
-	}
-	return [NSArray arrayWithArray: newStrings];
-}
-*/
-
 +(NSDictionary*)dataAndCommentsFrom: (NSArray*)strings{
 	NSMutableArray *newStrings = [NSMutableArray array];
 	NSMutableArray *newComments = [NSMutableArray array];
@@ -112,6 +104,18 @@
 	}
 	return NO;
 }
+
+-(NSInteger)count{
+	return [_scheduleLines count];
+}
+
+-(CHScheduleLine*)scheduleLineAtIndex: (NSInteger)index{
+	if(index < [_scheduleLines count] && index > 0){
+		return [_scheduleLines objectAtIndex: index];
+	}
+	return nil;
+}
+
 
 -(void)printSchedule{
 	NSLog(@"Printing schedule");

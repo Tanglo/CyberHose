@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class CHScheduleLine;
+
 /*!
  @brief A class to load and store the CyberHose schedule.
  
@@ -36,9 +38,8 @@
  * 
  * sX: Each of these represents a water source that is specified in the CyberHose settings.  There can be as many of these as needed, but they will be ignored if the matching settings are not found.  Lower numbered sources take priority.  So CyberHose will attempt to water with s0 first, and will only use s1 is s0 is unavailable, it will try s1 before s2, and so on.
  */
-@interface CHSchedule : NSObject {
+@interface CHSchedule : NSObject <NSFastEnumeration>{
 	
-	/// @brief An array of the @c CHScheduleLine objects
 	NSArray *_scheduleLines;
 }
 
@@ -60,12 +61,6 @@
  */
 +(NSArray *)scheduleLinesByRemovingCommentsAndBlankLinesFrom: (NSArray *)lines;
 
-/*! Removeds the variable comments (i.e. text contained in brackets) from an array of strings
- * @param strings An @c NSArray of strings
- * @return The same array of strings with text contained in brackets removed from each string.
- */
-//+(NSArray *)stringsByRemovingComments: (NSArray *)strings;
-
 /*! Removes the comments (i.e. tect contained in brackets) from an array of strings and returns the strings and the comments.
  * @param strings An @c NSArray of strings
  * @return An @c NSDictionary containing and two arrays keyed by "dataStrings" and "comments"
@@ -77,6 +72,18 @@
  * @return @c YES if the line starts with //, else NO.
  */
 +(BOOL)lineIsAComment: (NSString *)line;
+
+/*!Gets the number of lines the schedule
+ * @return An @c NSInteger value equal to the number of lines in the schedule
+ */
+-(NSInteger)count;
+
+/*!Get the schedule line at the specified, and valid,index.
+ * @param The index of the schedule line to be returned
+ * @return The scheduleLine if the index is valid, otherwise @c nil.
+ */
+-(CHScheduleLine*)scheduleLineAtIndex: (NSInteger)index;
+
 
 /*! This is a debugging function that prints the schedule using NSLog
  */

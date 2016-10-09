@@ -29,6 +29,8 @@ static void startCyberhoseDaemon(){
 	umask(0);
 	
 	//Open a log file
+	openlog("cyberhose.main",LOG_NOWAIT|LOG_PID, LOG_USER);
+	
 	
 	//Create a SID for the child process
 	if(setsid() < 0){
@@ -44,5 +46,6 @@ static void startCyberhoseDaemon(){
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);
 	
+	syslog(LOG_NOTICE, "Sucessfully started cyberhosed");
 }
 

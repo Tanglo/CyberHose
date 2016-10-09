@@ -12,6 +12,7 @@
 #import "CHSettings.h"
 #import "CHSchedule.h"
 #import "CHStartDaemon.m"
+#import "CHScheduleLine.h"
 
 int main(int argc, const char * argv[])
 {
@@ -22,9 +23,23 @@ int main(int argc, const char * argv[])
 	CHSchedule *schedule = [CHSchedule scheduleWithPath: [settings schedulePath]];
 	startCyberhoseDaemon();
 //	[schedule printSchedule];
-	while(1){
+	
+	//Start initial timers
+	for(CHScheduleLine* scheduleLine in schedule){
+		//[scheduleLine printScheduleLine];
+	}
+	
+	[NSTimer scheduledTimerWithTimeInterval: 30.0 target: [schedule scheduleLineAtIndex: 0] selector: @selector(startIrrigation) userInfo: nil repeats: NO];
+	
+	//sit and wait for timers
+/*	while([[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow: 2]]){
+		NSLog(@"New runLoop cycle");
+	}
+*/
+/*	while(1){
 	
 	}
+*/
 	
 /*
 	NSLog(@"Making a CHGPIO");
