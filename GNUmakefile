@@ -13,6 +13,7 @@ GNUSTEP_MAKEFILES = /usr/share/GNUstep/Makefiles
 include $(GNUSTEP_MAKEFILES)/common.make
 
 TOOL_NAME = cyberhosed
+#APP_NAME = cyberhosed
 
 cyberhosed_OBJC_FILES = CHMain.m CHGPIO.m CHSettings.m CHSchedule.m CHScheduleLine.m CHTime.m CHStartDaemon.m
 
@@ -20,5 +21,6 @@ cyberhosed_OBJC_FILES = CHMain.m CHGPIO.m CHSettings.m CHSchedule.m CHScheduleLi
 
 #Include the rules for making obj-c
 include $(GNUSTEP_MAKEFILES)/tool.make
+#include $(GNUSTEP_MAKEFILES)/application.make
 
 # -include GNUmakefile.postamble

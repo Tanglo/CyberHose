@@ -55,11 +55,11 @@
  */
 +(CHScheduleLine *)scheduleLineWithStrings: (NSArray *)strings AndHeaders: (NSArray *)headers;
 
-/*! This method is called by instances of @c NSTImer when they fire.  It starts irrigation of this line and then sets and @c NSTimer object to signal the end of irrigation.
+/*! This method starts irrigation of this line.
  */
 -(void)startIrrigation;
 
-/*! This method is called by instances of @c NSTImer when they fire.  It stops irrigation of this line and then sets and @c NSTimer object to signal the next schedule start for this line.
+/*! This method stops irrigation of this line.
  */
 -(void)stopIrrigation;
 

@@ -137,14 +137,11 @@
 }
 
 -(void)startIrrigation{
-//	NSLog(@"Starting irrigation");
-	syslog(LOG_NOTICE, "Starting irrigation");
-	[NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(stopIrrigation) userInfo: nil repeats: NO];
+	
 }
 
 -(void)stopIrrigation{
-	NSLog(@"Stopping irrigation");
-	[NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(startIrrigation) userInfo: nil repeats: NO];
+	
 }
 
 

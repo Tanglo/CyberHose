@@ -17,6 +17,7 @@
 int main(int argc, const char * argv[])
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	NSLog(@"Starting CyberHose");
 	CHSettings *settings = [CHSettings settings];
 
@@ -29,18 +30,13 @@ int main(int argc, const char * argv[])
 		//[scheduleLine printScheduleLine];
 	}
 	
-	[NSTimer scheduledTimerWithTimeInterval: 30.0 target: [schedule scheduleLineAtIndex: 0] selector: @selector(startIrrigation) userInfo: nil repeats: NO];
-	
-	//sit and wait for timers
-/*	while([[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow: 2]]){
-		NSLog(@"New runLoop cycle");
+	while(1){
+		syslog(LOG_NOTICE, "Start irrigation");
+		sleep(10);
+		syslog(LOG_NOTICE, "Stop irrigation");
+		sleep(20);
 	}
-*/
-/*	while(1){
-	
-	}
-*/
-	
+
 /*
 	NSLog(@"Making a CHGPIO");
 	CHGPIO *testPin = [CHGPIO gpioWithGPIO: 17 AndMode: GPIO_OUTPUT];
