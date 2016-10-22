@@ -63,6 +63,17 @@
  */
 -(void)stopIrrigation;
 
+/*! Gets the next time that irrigation of this line should be started if it stops at the specified triggerTime
+ * @param stopTime The time that irrigation of this line was/will be stopped.
+ * @return A triggerTime for starting irrigation of this line.
+ */
+-(NSDate *)nextStartTimeWith: (NSDate *)stopTime;
+
+/*! Gets the time that irrigation of this line should be stopped if it starts at the specified triggerTime
+ * @param startTime The time that irrigation of this line was/will be started.
+ * @return A triggerTime for stopping irrigation of this line.
+ */
+-(NSDate*)stopTimeWith: (NSDate *)startTime; 
 
 /*! A debugging function that prints the scheduleLine using NSLog
  */

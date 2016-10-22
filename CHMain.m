@@ -13,21 +13,28 @@
 #import "CHSchedule.h"
 #import "CHStartDaemon.m"
 #import "CHScheduleLine.h"
+#import "CHEvent.h"
 
 int main(int argc, const char * argv[])
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSLog(@"Starting CyberHose");
+	syslog(LOG_NOTICE, "Starting cyberhosed");
 	CHSettings *settings = [CHSettings settings];
+	NSString* settingsLogString = [NSString stringWithFormat: @"schedulePath: %@", [settings schedulePath]];
+	syslog(LOG_NOTICE, [settingsLogString UTF8String]);
+	settingsLogString = [NSString stringWithFormat: @"maxLines: %d", [settings maxLines]];
+	syslog(LOG_NOTICE, [settingsLogString UTF8String]);
 
 	CHSchedule *schedule = [CHSchedule scheduleWithPath: [settings schedulePath]];
 	startCyberhoseDaemon();
 //	[schedule printSchedule];
 	
 	//Start initial timers
+	NSMutableArray *timingEvents = [NSMutableArray array];
 	for(CHScheduleLine* scheduleLine in schedule){
-		//[scheduleLine printScheduleLine];
+//		[scheduleLine printScheduleLine];
+		[timingEvents addObject: [CHEvent eventWithTriggerTime: [scheduleLine nextStartTimeWith: nil] Line: scheduleLine AndAction: CHActionStartIrrigation]];
 	}
 	
 	while(1){

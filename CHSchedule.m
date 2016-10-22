@@ -9,6 +9,7 @@
 
 #import "CHSchedule.h"
 #import "CHScheduleLine.h"
+#import <syslog.h>
 
 @interface CHSchedule ()
 
@@ -33,7 +34,8 @@
 	if (self) {
 		NSString *fullPath = [path stringByExpandingTildeInPath];
 		if([[NSFileManager defaultManager] fileExistsAtPath: fullPath]){
-			NSLog([NSString stringWithFormat: @"Found schedule file at %@", fullPath]);
+			NSString* logNotice = [NSString stringWithFormat: @"Found schedule file at %@", fullPath];
+			syslog(LOG_NOTICE, [logNotice UTF8String]);
 			NSError *error;
 			NSString *scheduleString = [NSString stringWithContentsOfFile: fullPath encoding: NSUTF8StringEncoding error: &error];
 			if(fullPath != nil){
@@ -51,14 +53,12 @@
 -(NSArray *)decodeLineStrings:(NSArray *)lines{
 	NSArray *scheduleHeaders;
 	scheduleHeaders = [[lines objectAtIndex: 0] componentsSeparatedByString: @"|"];
-//	scheduleHeaders = [CHSchedule stringsByRemovingComments: scheduleHeaders];
 	scheduleHeaders = [[CHSchedule dataAndCommentsFrom: scheduleHeaders] objectForKey: @"dataStrings"];
 	NSInteger numLines = [lines count];
 	NSMutableArray *newScheduleLines = [NSMutableArray array];
 	NSInteger i;
 	for(i=1; i<numLines; i++){
 		NSArray *lineStrings = [[lines objectAtIndex: i] componentsSeparatedByString: @"|"];
-//		lineStrings = [CHSchedule stringsByRemovingComments: lineStrings];
 		lineStrings = [[CHSchedule dataAndCommentsFrom: lineStrings] objectForKey: @"dataStrings"];
 		[newScheduleLines addObject: [CHScheduleLine scheduleLineWithStrings: lineStrings AndHeaders: scheduleHeaders]];
 	}

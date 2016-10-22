@@ -122,7 +122,6 @@
 				sourceWasFound = YES;
 				sourceCount++;
 				[newWaterSources addObject: newSourceNumberValue];
-//				NSLog([NSString stringWithFormat: @"%@ - %d, %d", currSource, index, newSourceValue]);
 			}
 		}while(sourceWasFound);
 		_waterSources = [NSArray arrayWithArray: newWaterSources];
@@ -142,6 +141,31 @@
 
 -(void)stopIrrigation{
 	
+}
+
+-(NSDate *)nextStartTimeWith: (NSDate *)stopTime{
+	NSLog([NSString stringWithFormat: @"stopTime: %@", stopTime]);
+	if(_days == nil){
+		//use frequency method
+		NSDate* stopDate = nil;
+		if(stopTime){
+			stopDate = stopTime;
+		} else {
+			stopDate = [NSDate date];
+		}
+		NSLog([NSString stringWithFormat: @"stopDate: %@", stopDate]);
+		
+			
+	} else {
+		//use days method
+		
+	}
+	return nil;
+}
+
+-(NSDate*)stopTimeWith: (NSDate *)startTime{
+
+	return nil;
 }
 
 

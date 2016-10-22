@@ -8,6 +8,7 @@
  */
 
 #import "CHSettings.h"
+#import <syslog.h>
 
 @implementation CHSettings
 
@@ -16,7 +17,7 @@
 	if (self) {
 		NSString *settingsPath = [[NSString stringWithFormat:@"~/.cyberhose"] stringByExpandingTildeInPath];
 		if([[NSFileManager defaultManager] fileExistsAtPath: settingsPath]){
-//			NSLog([NSString stringWithFormat: @"Found settings file at %@", settingsPath]);
+			syslog(LOG_NOTICE, "Found settings file");
 			NSError *error;
 			NSString *settingsString = [NSString stringWithContentsOfFile: settingsPath encoding: NSUTF8StringEncoding error: &error];
 			if(settingsString != nil){
@@ -36,10 +37,24 @@
 					NSLog([NSString stringWithFormat: @"Error starting CyberHose: Variable schedulePath is not defined in %@", settingsPath]);
 					return nil;
 				}
-				if(![settingsScanner scanUpToString: @"'" intoString: &schedulePath]){
+				if(![settingsScanner scanUpToString: @"'" intoString: &_schedulePath]){
 					NSLog([NSString stringWithFormat: @"Error starting CyberHose: Variable schedulePath is not defined in %@", settingsPath]);
 					return nil;
 				}
+				
+				_maxLines = 100;
+				[settingsScanner setScanLocation: 0];
+				[settingsScanner scanUpToString: @"maxLines" intoString: NULL];
+				if([settingsScanner scanString: @"maxLines" intoString: NULL]){
+					[settingsScanner scanUpToString: @"=" intoString: NULL];
+					if([settingsScanner scanString: @"=" intoString: NULL]){
+						NSInteger newMaxLines;
+						if([settingsScanner scanInteger: &newMaxLines]){
+							_maxLines = newMaxLines;
+						}
+					}
+				}
+				
 			} else {
 				NSLog([error localizedFailureReason]);
 				return nil;
@@ -59,7 +74,11 @@
 }
 
 -(NSString *)schedulePath{
-	return schedulePath;
+	return _schedulePath;
+}
+
+-(NSInteger)maxLines{
+	return _maxLines;
 }
 
 

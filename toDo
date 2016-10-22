@@ -1,6 +1,5 @@
 Now:
- - finish initialisation of CHScheduleLine
-	- time
+	- finish CHScheduleLine nextStartDateWith: and stopTimeWith:
 
 Future:
  ? CHGPIOController - track which pins are currently being used

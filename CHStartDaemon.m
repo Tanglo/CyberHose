@@ -10,12 +10,11 @@
 #import "CHStartDaemon.h"
 
 static void startCyberhoseDaemon(){
-	printf("Starting CyberHose daemon\n");
+	syslog(LOG_NOTICE,"Starting cyberHose daemon");
 	
 	pid_t pid;
 	
 	pid = fork();
-	printf("pid = %d\n", pid);
 	//Error
 	if(pid < 0){
 		exit(1);

@@ -17,7 +17,10 @@
 @interface CHSettings : NSObject {
 
 	/// @brief The path to the schedule file.
-	NSString *schedulePath;
+	NSString *_schedulePath;
+	
+	/// @brief The maximum number of lines that can be simultaneously irrigated.
+	NSInteger _maxLines;
 }
 
 /*! Creates a new autoreleasing instance of @c CHSettings.
@@ -29,5 +32,10 @@
  * @return An @c NSString that shows the path to the schedule file.
  */
 -(NSString *)schedulePath;
+
+/*! Returns the maximum number of lines that will be simultaneouly irrigated.  If the maximum number of lines are already being irrigated, the current line will be added to a queue.
+ * @return The namixmum number of lines that will be simultaneously irrigated.
+ */
+-(NSInteger)maxLines;
 
 @end
