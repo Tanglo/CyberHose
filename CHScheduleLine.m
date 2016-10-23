@@ -143,19 +143,20 @@
 	
 }
 
--(NSDate *)nextStartTimeWith: (NSDate *)stopTime{
-	NSLog([NSString stringWithFormat: @"stopTime: %@", stopTime]);
+-(NSDate *)nextStartTimeWith: (NSDate *)lastStartTime{
+	NSLog([NSString stringWithFormat: @"lastStartTime: %@", lastStartTime]);
 	if(_days == nil){
 		//use frequency method
-		NSDate* stopDate = nil;
-		if(stopTime){
-			stopDate = stopTime;
+		NSDate* newTriggerTime = nil;
+		if(lastStartTime){
+			newTriggerTime = [lastStartTime dateByAddingTimeInterval: _frequency*60*60];
+//			newTriggerTime = [CHScheduleLine dateWithCalendarDayFrom: newTriggerTime AndTimeFrom: [_times objectAtIndex: 0]];
+			NSLog([NSString stringWithFormat: @"newTriggerTime: %@", newTriggerTime]);
+			return newTriggerTime;
 		} else {
-			stopDate = [NSDate date];
-		}
-		NSLog([NSString stringWithFormat: @"stopDate: %@", stopDate]);
-		
+			newTriggerTime = [NSDate date];
 			
+		}	
 	} else {
 		//use days method
 		
@@ -165,6 +166,13 @@
 
 -(NSDate*)stopTimeWith: (NSDate *)startTime{
 
+	return nil;
+}
+
++(NSDate*)dateWithCalendarDayFrom: (NSDate*)date AndTimeFrom: (CHTime*)time{
+	NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+	NSDateComponents *components = [gregorianCalendar components: NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate: date];
+	
 	return nil;
 }
 

@@ -18,6 +18,13 @@
 int main(int argc, const char * argv[])
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSMutableArray *terminalArguments = [NSMutableArray array];
+	if(argc > 0){
+		NSInteger i;
+		for(i=0; i<argc; i++){
+			[terminalArguments addObject: [NSString stringWithFormat: @"%s", argv[i]]];
+		}
+	}
 	
 	syslog(LOG_NOTICE, "Starting cyberhosed");
 	CHSettings *settings = [CHSettings settings];
@@ -34,7 +41,11 @@ int main(int argc, const char * argv[])
 	NSMutableArray *timingEvents = [NSMutableArray array];
 	for(CHScheduleLine* scheduleLine in schedule){
 //		[scheduleLine printScheduleLine];
-		[timingEvents addObject: [CHEvent eventWithTriggerTime: [scheduleLine nextStartTimeWith: nil] Line: scheduleLine AndAction: CHActionStartIrrigation]];
+		if([terminalArguments indexOfObject: @"now"] != NSNotFound){
+			[timingEvents addObject: [CHEvent eventWithTriggerTime: [scheduleLine nextStartTimeWith: nil] Line: scheduleLine AndAction: CHActionStartIrrigation]];
+		} else{
+			[timingEvents addObject: [CHEvent eventWithTriggerTime: [scheduleLine nextStartTimeWith: [NSDate date]] Line: scheduleLine AndAction: CHActionStartIrrigation]];
+		}
 	}
 	
 	while(1){

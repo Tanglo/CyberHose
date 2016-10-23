@@ -17,6 +17,8 @@
 #define CHFriday @"CHStringFriday"
 #define CHSaturday @"CHStringSaturday" 
 
+@class CHTime;
+
 /*!
  @brief A class to manage a single line of a CyberHose schedule.
  
@@ -64,16 +66,23 @@
 -(void)stopIrrigation;
 
 /*! Gets the next time that irrigation of this line should be started if it stops at the specified triggerTime
- * @param stopTime The time that irrigation of this line was/will be stopped.
+ * @param startTime The last time that that irrigation of this line was started.  If @c startTime is set to @c nil and this line uses frequency (rather than days), the startTime will be within 24 h.
  * @return A triggerTime for starting irrigation of this line.
  */
--(NSDate *)nextStartTimeWith: (NSDate *)stopTime;
+-(NSDate *)nextStartTimeWith: (NSDate *)lastStartTime;
 
 /*! Gets the time that irrigation of this line should be stopped if it starts at the specified triggerTime
- * @param startTime The time that irrigation of this line was/will be started.
+ * @param lastStartTime The time that irrigation of this line was/will be started.
  * @return A triggerTime for stopping irrigation of this line.
  */
--(NSDate*)stopTimeWith: (NSDate *)startTime; 
+-(NSDate*)stopTimeWith: (NSDate *)startTime;
+
+/*! Returns a new instance of @c NSDate which has the same calendar day day as a specified date and the time of specified @c CHTime object.
+ * @param date The date used to source the calendar day.
+ * @param time The four digit time used to source the time.
+ * @return An @c NSDate composed from the calendar Year, month, an day of @c date and the hours and minutes of @c time.
+ */
++(NSDate*)dateWithCalendarDayFrom: (NSDate*)date AndTimeFrom: (CHTime*)time;
 
 /*! A debugging function that prints the scheduleLine using NSLog
  */
