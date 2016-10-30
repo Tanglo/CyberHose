@@ -84,9 +84,4 @@
  */
 -(CHScheduleLine*)scheduleLineAtIndex: (NSInteger)index;
 
-
-/*! This is a debugging function that prints the schedule using NSLog
- */
--(void)printSchedule;
-
 @end

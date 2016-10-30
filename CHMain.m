@@ -35,7 +35,7 @@ int main(int argc, const char * argv[])
 
 	CHSchedule *schedule = [CHSchedule scheduleWithPath: [settings schedulePath]];
 	startCyberhoseDaemon();
-//	[schedule printSchedule];
+//NSLog([NSString stringWithFormat: @"%@", schedule]);
 	
 	//Start initial timers
 	NSMutableArray *timingEvents = [NSMutableArray array];
@@ -47,6 +47,12 @@ int main(int argc, const char * argv[])
 			[timingEvents addObject: [CHEvent eventWithTriggerTime: [scheduleLine nextStartTimeWith: [NSDate date]] Line: scheduleLine AndAction: CHActionStartIrrigation]];
 		}
 	}
+
+
+for(CHEvent* event in timingEvents){
+	NSLog([NSString stringWithFormat: @"%@", event]);
+}
+
 	
 	while(1){
 		syslog(LOG_NOTICE, "Start irrigation");

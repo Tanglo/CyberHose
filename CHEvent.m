@@ -43,4 +43,8 @@
 	return _action;
 }
 
+-(NSString *)description{
+	return [NSString stringWithFormat: @"triggerTime: %@; line: %@; action: %@", _triggerTime, _line, _action];
+}
+
 @end

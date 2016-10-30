@@ -84,8 +84,4 @@
  */
 +(NSDate*)dateWithCalendarDayFrom: (NSDate*)date AndTimeFrom: (CHTime*)time;
 
-/*! A debugging function that prints the scheduleLine using NSLog
- */
--(void)printScheduleLine;
-
 @end

@@ -144,19 +144,16 @@
 }
 
 -(NSDate *)nextStartTimeWith: (NSDate *)lastStartTime{
-	NSLog([NSString stringWithFormat: @"lastStartTime: %@", lastStartTime]);
+//	NSLog([NSString stringWithFormat: @"lastStartTime: %@", lastStartTime]);
 	if(_days == nil){
 		//use frequency method
 		NSDate* newTriggerTime = nil;
 		if(lastStartTime){
 			newTriggerTime = [lastStartTime dateByAddingTimeInterval: _frequency*60*60];
-//			newTriggerTime = [CHScheduleLine dateWithCalendarDayFrom: newTriggerTime AndTimeFrom: [_times objectAtIndex: 0]];
-			NSLog([NSString stringWithFormat: @"newTriggerTime: %@", newTriggerTime]);
-			return newTriggerTime;
 		} else {
 			newTriggerTime = [NSDate date];
-			
-		}	
+		}
+		return [CHScheduleLine dateWithCalendarDayFrom: newTriggerTime AndTimeFrom: [_times objectAtIndex:0]];
 	} else {
 		//use days method
 		
@@ -172,17 +169,18 @@
 +(NSDate*)dateWithCalendarDayFrom: (NSDate*)date AndTimeFrom: (CHTime*)time{
 	NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
 	NSDateComponents *components = [gregorianCalendar components: NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate: date];
-	
-	return nil;
+	[components setHour: [time hour]];
+	[components setMinute: [time minute]];
+	return [gregorianCalendar dateFromComponents: components];
 }
 
 
--(void)printScheduleLine{
+-(NSString*)description{
 	NSString *waterSourcesString = @"";
 	for(NSNumber *currSource in _waterSources){
 		waterSourcesString = [waterSourcesString stringByAppendingString: [NSString stringWithFormat: @"%s ", [currSource boolValue] ? "YES" : "NO"]];
 	}
-	NSLog([NSString stringWithFormat: @"freq: %d; dur: %d; days: %@; times: %@, sources: %@", _frequency, _duration, _days, _times, waterSourcesString]);
+	return [NSString stringWithFormat: @"freq: %d; dur: %d; days: %@; times: %@, sources: %@", _frequency, _duration, _days, _times, waterSourcesString];
 }
 
 @end

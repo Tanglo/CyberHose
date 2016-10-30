@@ -40,4 +40,16 @@
 	return timeString;
 }
 
+-(NSInteger)hour{
+//	NSLog([NSString stringWithFormat: @"The time is: %d", _theTime]);
+//	NSLog([NSString stringWithFormat: @"The hours are: %d", _theTime/100]);
+	return _theTime/100;
+}
+
+-(NSInteger)minute{
+//	NSLog([NSString stringWithFormat: @"The time is: %d", _theTime]);
+//	NSLog([NSString stringWithFormat: @"The minutes are: %d", _theTime -_theTime/100 *100]);
+	return _theTime -_theTime/100 *100;
+}
+
 @end

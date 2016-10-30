@@ -1,6 +1,5 @@
 Now:
 	- finish CHScheduleLine nextStartDateWith: and stopTimeWith:
-		- requires CHSchedule dateWithCalendarDayFrom:AndTimeFrom:
 
 Future:
  ? CHGPIOController - track which pins are currently being used

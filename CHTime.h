@@ -31,4 +31,14 @@
  */
 +(CHTime *)timeWithInteger: (NSInteger)newTime;
 
+/*! Returns the number of hours in this time.
+ * @return The hour value returned will be from the interval [0,23].
+ */
+-(NSInteger)hour;
+
+/*! Returns the number of minutes in this time.
+ * @return The minute value returned will be from the interval [0,59].
+ */
+-(NSInteger)minute;
+
 @end

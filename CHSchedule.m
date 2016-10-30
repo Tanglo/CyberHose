@@ -116,12 +116,12 @@
 	return nil;
 }
 
-
--(void)printSchedule{
-	NSLog(@"Printing schedule");
+-(NSString*)description{
+	NSString* descriptionString = @"";
 	for(CHScheduleLine *line in _scheduleLines){
-		[line printScheduleLine];
+		descriptionString = [descriptionString stringByAppendingString: [NSString stringWithFormat: @"%@%s", line, "\n"]];
 	}
+	return descriptionString;
 }
 
 @end
