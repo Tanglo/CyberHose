@@ -1,5 +1,5 @@
 Now:
-	- finish CHScheduleLine nextStartDateWith: and stopTimeWith:
+	- finish CHScheduleLine nextDayAndTimeFromDays:AndTimes:
 
 Future:
  ? CHGPIOController - track which pins are currently being used

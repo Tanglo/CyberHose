@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
+/*
 #define CHSunday @"CHStringSunday"
 #define CHMonday @"CHStringMonday"
 #define CHTuesday @"CHStringTuesday"
@@ -16,6 +17,16 @@
 #define CHThursday @"CHStringThursday"
 #define CHFriday @"CHStringFriday"
 #define CHSaturday @"CHStringSaturday" 
+*/
+
+extern NSString *const CHSunday;
+extern NSString *const CHMonday;
+extern NSString *const CHTuesday;
+extern NSString *const CHWednesday;
+extern NSString *const CHThursday;
+extern NSString *const CHFriday;
+extern NSString *const CHSaturday;
+
 
 @class CHTime;
 
@@ -82,6 +93,21 @@
  * @param time The four digit time used to source the time.
  * @return An @c NSDate composed from the calendar Year, month, an day of @c date and the hours and minutes of @c time.
  */
-+(NSDate*)dateWithCalendarDayFrom: (NSDate*)date AndTimeFrom: (CHTime*)time;
++(NSDate*)dateBySettingTimeOf: (NSDate*)date To: (CHTime*)time;
+
+/*! Returns a new instance of @c NSDate which is the same as the specified @c date moved forward to the specified @c time on the next specified @c day (i.e. Monday, Tuesday, etc.).  For example, if @c date is 04 Dec 2016, @c day is @c CHWednesday, and @c time is and @c CHTime object that sepcified 1900 h, the this method will return and @c NSDate equal to 07 Dec 2016, 1900 h.
+ * @param date The base date that will be moved forward.
+ * @param day The day that the new date will have.  THis needs to be from those defined in @c CHSheduleLine (e.g. CHMonday).
+ * @param time The four digit time that the new date will have.
+ * @return An @c NSDate composed by moving @c date forward to @c time on the next @c day.
+ */
++(NSDate*)dateByAdvancing: (NSDate*)date ToDay: (NSString*)day AndTime: (CHTime*)time;
+
+/*! Returns the next day and time (from now) from the combination of the array @c CHWeekday constandts and @c CHTime objects.  For example, if @c days == [CHMonday; CHFriday] and @c times == [0700; 1900], and it is currently 04 Dec 2016, 1300, then this method will return CHMonday, 0700.  If the same data were provided but it was 05 Dec 2016, 1300 h, this method will return CHMonday 1900 h.
+ * @param days An @c NSArray of @c CHWeekday constants (e.g. CHFriday)
+ * @param times An@c NSArray of @c CHTime objects.
+ * @return The next day and time combination going forward from the date and time that the method was called.
+ */
++(NSDictionary*)nextDayAndTimeFromDays: (NSArray*)days AndTimes: (NSArray*)times;
 
 @end

@@ -9,7 +9,15 @@
 
 #import "CHScheduleLine.h"
 #import "CHTime.h"
-#import <syslog.h>
+#import <syslog.h> 
+
+NSString *const CHSunday = @"CHStringSunday";
+NSString *const CHMonday = @"CHStringMonday";
+NSString *const CHTuesday = @"CHStringTuesday";
+NSString *const CHWednesday = @"CHStringWednesday";
+NSString *const CHThursday = @"CHStringThursday";
+NSString *const CHFriday = @"CHStringFriday";
+NSString *const CHSaturday = @"CHStringSaturday";
 
 @implementation CHScheduleLine
 
@@ -153,10 +161,16 @@
 		} else {
 			newTriggerTime = [NSDate date];
 		}
-		return [CHScheduleLine dateWithCalendarDayFrom: newTriggerTime AndTimeFrom: [_times objectAtIndex:0]];
+		return [CHScheduleLine dateBySettingTimeOf: newTriggerTime To: [_times objectAtIndex:0]];
 	} else {
 		//use days method
+		NSDate* previousDate = [NSDate date];
+		if(lastStartTime){
+			previousDate = lastStartTime;
+		}
+		NSDictionary* nextDayAndTime = [CHScheduleLine nextDayAndTimeFromDays: _days AndTimes: _times];
 		
+		return [CHScheduleLine dateByAdvancing: previousDate ToDay: CHWednesday AndTime: [_times objectAtIndex:0]];
 	}
 	return nil;
 }
@@ -166,12 +180,48 @@
 	return nil;
 }
 
-+(NSDate*)dateWithCalendarDayFrom: (NSDate*)date AndTimeFrom: (CHTime*)time{
++(NSDate*)dateBySettingTimeOf: (NSDate*)date To: (CHTime*)time{
 	NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
 	NSDateComponents *components = [gregorianCalendar components: NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate: date];
 	[components setHour: [time hour]];
 	[components setMinute: [time minute]];
 	return [gregorianCalendar dateFromComponents: components];
+}
+
++(NSDate*)dateByAdvancing: (NSDate*)date ToDay: (NSString*)day AndTime: (CHTime*)time{
+	NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+	NSDateComponents *components = [gregorianCalendar components: NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSWeekdayCalendarUnit fromDate: date];
+	NSInteger weekdayInt = -1;
+	if([day isEqualTo: CHSunday]){
+		weekdayInt = 1;
+	} else if([day isEqualTo:CHMonday]){
+		weekdayInt = 2;
+	} else if([day isEqualTo:CHTuesday]){
+		weekdayInt = 3;
+	} else if([day isEqualTo:CHWednesday]){
+		weekdayInt = 4;
+	} else if([day isEqualTo:CHThursday]){
+		weekdayInt = 5;
+	} else if([day isEqualTo:CHFriday]){
+		weekdayInt = 6;
+	} else if([day isEqualTo:CHSaturday]){
+		weekdayInt = 7;
+	}
+	NSInteger numOfDaysToAdvance = weekdayInt - [components weekday];
+	if(numOfDaysToAdvance == 0){
+		numOfDaysToAdvance = 7;
+	}
+	[components setDay: [components day] + numOfDaysToAdvance];
+	[components setHour: [time hour]];
+	[components setMinute: [time minute]];
+	
+	return [gregorianCalendar dateFromComponents: components];;
+
+}
+
++(NSDictionary*)nextDayAndTimeFromDays: (NSArray*)days AndTimes: (NSArray*)times{
+
+	return nil;
 }
 
 
